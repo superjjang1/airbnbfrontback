@@ -6,7 +6,12 @@ function App() {
   return (
     <Router>
     <div className="App">
-      <h1>Sanity check</h1>
+      <div className="container-fluid nav">
+        <div className="row">
+          <NavBar />
+        </div>
+      </div>
+      <h1>Fact Check</h1>
     </div>
 
     </Router>
