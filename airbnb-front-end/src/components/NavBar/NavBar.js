@@ -9,7 +9,7 @@ class NavBar extends Component {
         return ( 
         <div className="container-fluid nav">
             <div className="row">
-                <nav className="">
+                <nav className="transparent">
                     <div className="nav-wrapper">
                         <Link to="/" className="left">AirBnB</Link>
                         <ul id="nav-mobile" className="right">
