@@ -2,15 +2,23 @@ import React, {Component} from 'react';
 import './SearchBox.css'
 
 class SearchBox extends Component {
-    state ={};
-    handleWhere=()=>{
-
+    state ={
+        checkIn:"",
+        checkOut:"",
+        where:"",
+        guests:0
+    };
+    handleWhere=(e)=>{
+        this.setState({where: e.target.value})
     }
-    handleCheckIn=()=>{
-
+    handleCheckIn=(e)=>{
+        this.setState({checkIn: e.target.value})
     }
-    handleCheckOut=()=>{
-
+    handleCheckOut=(e)=>{
+        this.setState({checkOut: e.target.value})
+    }
+    handleGuests=(e)=>{
+        this.setState({guests: e.target.value})
     }
 
     render() { 
@@ -39,7 +47,7 @@ class SearchBox extends Component {
                 </div>
                 <div className="col m12">
                     <div className="input-field" id="guests">
-                        <input onChange={this.handleWhere} placeholder="Guests" value={this.state.guests} type="number" className="validate" />
+                        <input onChange={this.handleGuests} placeholder="Guests" value={this.state.guests} type="number" className="validate" />
                         <label htmlFor="guests">Guests</label>
                     </div>
                 </div>
