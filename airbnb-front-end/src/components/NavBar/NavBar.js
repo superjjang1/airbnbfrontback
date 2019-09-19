@@ -9,9 +9,9 @@ class NavBar extends Component {
         return ( 
         <div className="container-fluid nav">
             <div className="row">
-                <nav className="#40c4ff light-blue accent-2">
+                <nav className="">
                     <div className="nav-wrapper">
-                        <Link to="/" className="brand-logo">AirBnB</Link>
+                        <Link to="/" className="left">AirBnB</Link>
                         <ul id="nav-mobile" className="right">
                             <li>
                                 <Link to="/host/homes">Host a home</Link>

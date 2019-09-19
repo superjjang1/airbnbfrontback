@@ -1,0 +1,8 @@
+.nav ul li {
+    color: white;
+    
+}
+.nav ul li:hover{
+    border-bottom: 2px solid white;
+    background-color: initial;
+}
