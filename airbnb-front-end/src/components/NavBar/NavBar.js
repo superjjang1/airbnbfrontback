@@ -9,7 +9,11 @@ class NavBar extends Component {
         return ( 
         <div className="container-fluid nav">
             <div className="row">
-                muh code
+                <div className="black">
+                    <div className="nav-wrapper">
+                        <Link to="/" className="brand-logo">AirBnB</Link>
+                    </div>
+                </div>
             </div>
         </div>
          );
