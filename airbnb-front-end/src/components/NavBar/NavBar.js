@@ -31,7 +31,12 @@ class NavBar extends Component {
                         </ul>
                     </div>
                 </nav>
+                <div className="login-modal">
+                    <h1>Modal</h1>
+
+                </div>
             </div>
+
         </div>
          );
     }
