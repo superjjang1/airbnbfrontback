@@ -8,6 +8,7 @@ class NavBar extends Component {
         showModal : false
     }
     signup = (e) =>{
+        document.querySelector('body').className = 'body-modal-show';
         this.setState({
             showModal: true
         })
@@ -47,6 +48,22 @@ class NavBar extends Component {
                 <div className="login-modal" style={this.state.showModal ? {"display":"block"} : {}}>
                     <button className="close-modal" onClick={this.closeModal}>x</button>
                     <h1>Modal</h1>
+                    <section>
+                    <button type="submit" className="facebook" >
+                        <span>
+                            <div>
+                                <div>
+                                    <svg viewBox="0 0 32 32" role="presentation" ></svg>
+
+                                </div>
+                            </div>
+                            <div class="">
+                                <div>Continue with Facebook</div>
+                            </div>
+                        </span>
+                    </button>
+
+                    </section>
 
                 </div>
             </div>

@@ -35,4 +35,54 @@
     margin-right: auto;
     margin-top: 30vh;
     display: none;
+    
+}
+.close-modal{
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    font-size: 24px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+.body-modal-show{
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    overflow: hidden;
+    
+    
+}
+.nav .nav-non-link:hover {
+    background-color: rgba(0,0,0,.15);
+}
+.facebook {
+    cursor: pointer !important;
+    transition-property: background, border-color, color !important;
+    transition-duration: 0.2s !important;
+    transition-timing-function: ease-out !important;
+    position: relative !important;
+    display: inline-block !important;
+    text-align: center !important;
+    width: 100% !important;
+    font-size: 16px !important;
+    line-height: 24px !important;
+    letter-spacing: normal !important;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    font-weight: 800 !important;
+    padding-left: 22px !important;
+    padding-right: 22px !important;
+    color: rgb(255, 255, 255) !important;
+    text-decoration: none !important;
+    border-radius: 4px !important;
+    border-width: 2px !important;
+    border-style: solid !important;
+    background: rgb(69, 104, 178) !important;
+    border-color: transparent !important;
+    height: 18px;
 }
