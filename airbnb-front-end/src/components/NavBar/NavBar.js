@@ -4,6 +4,12 @@ import {Link} from 'react-router-dom';
 
 
 class NavBar extends Component {
+    state = {
+        showModal : false
+    }
+    signup = (e) =>{
+
+    }
 
     render() { 
         return ( 
@@ -22,11 +28,11 @@ class NavBar extends Component {
                             <li>
                                 <Link to="/help">Help</Link>
                             </li>
-                            <li>
-                                <Link to="/sign-up">Sign up</Link>
+                            <li onClick={this.signup}>
+                                Sign up
                             </li>
-                            <li>
-                                <Link to="/log-in">Log in</Link>
+                            <li onClick={this.signup}>
+                               Log in
                             </li>
                         </ul>
                     </div>
