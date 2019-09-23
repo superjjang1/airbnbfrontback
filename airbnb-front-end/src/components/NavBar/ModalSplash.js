@@ -2,7 +2,6 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 
 function ModalSplash(props){
-    console.log(props);
     return(
                     <div>
                         <button className="facebook-login">Connect With Facebook</button>

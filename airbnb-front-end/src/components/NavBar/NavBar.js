@@ -35,6 +35,14 @@ class NavBar extends Component {
         this.setState({
             showModal: true
         })
+        this.changeModalContent()
+    }
+    login = (e) =>{
+        document.querySelector('body').classList = 'body-modal-show';
+        this.setState({
+            showModal: true,
+        })
+        this.changeModalContent('login')
     }
     closeModal = (e) => {
         document.querySelector('body').classList = '';
@@ -63,7 +71,7 @@ class NavBar extends Component {
                             <li className="nav-non-link" onClick={this.signup}>
                                 Sign up
                             </li>
-                            <li className="nav-non-link" onClick={this.signup}>
+                            <li className="nav-non-link" onClick={this.login}>
                                Log in
                             </li>
                         </ul>
