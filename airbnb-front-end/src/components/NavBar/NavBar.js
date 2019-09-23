@@ -9,16 +9,22 @@ import SignUp from './Signup';
 class NavBar extends Component {
     state = {
         showModal : false,
-        modalContent:<ModalSplash />
+        modalContent: <ModalSplash/>
+        
+    }
+    componentDidMount(){
+        this.setState({
+            modalContent:<ModalSplash changeModalContent={this.changeModalContent}/>
+        })
     }
 
     changeModalContent =(newContent) =>{
-        let modalContent = <ModalSplash/>
+        console.log(this);
+        let modalContent = <ModalSplash changeModalContent={this.changeModalContent}/>
         if (newContent==='login'){
-                modalContent: <Login/>
+                modalContent = <Login changeModalContent={this.changeModalContent}/>
         }else if(newContent === 'signup'){
-
-                modalContent: <SignUp/>
+                modalContent = <SignUp changeModalContent={this.changeModalContent}/>
         }
         this.setState({
             modalContent
@@ -26,12 +32,14 @@ class NavBar extends Component {
     }
 
     signup = (e) =>{
-        document.querySelector('body').className = 'body-modal-show';
+        console.log(this);
+        document.querySelector('body').classList = 'body-modal-show';
         this.setState({
             showModal: true
         })
     }
     closeModal = (e) => {
+        document.querySelector('body').classList = '';
         this.setState({
             showModal: false
         })
