@@ -1,4 +1,8 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import{bindActionCreators} from 'redux';
+import signUpAction from '../../actions/signUpAction';
+
 
 
 class SignUp extends React.Component{
@@ -20,11 +24,18 @@ class SignUp extends React.Component{
     changePass = (e) => {
         this.setState({password: e.target.value})
     }
-
+    submitSignUp = (e) =>{
+        e.preventDefault();
+        // console.log(`Name:${this.state.first} ${this.state.last}`)
+        // console.log(`Email:${this.state.email}`)
+        // console.log(`Pass:${this.state.password}`)
+    }
     render(){
 
         return(
             <div className="register-form">
+            <form onSubmit={this.submitSignUp}>
+
             <input onChange={this.changeEmail} value={this.state.email} className="email-signup" placeholder="Email address" />
             <input onChange={this.changeFirst} value={this.state.first} className="first-signup" placeholder="First name" />
             <input onChange={this.changeLast} value={this.state.last} className="last-signup" placeholder="Last name" />
@@ -32,9 +43,17 @@ class SignUp extends React.Component{
             <button className="sign-up-button">Sign up</button>
             <div className="border-rule"></div>
             <div className="login-text align-left">Already have an Airbnb account? <span onClick={()=>{this.props.changeModalContent('login')}}>Log in</span></div>
+            </form>
             </div> 
         )
     }
 }
 
-export default SignUp;
+function mapDispatchToProps (dispatch){
+    return bindActionCreators({
+        signUpAction: signUpAction
+    },dispatch)
+}
+
+
+export default connect(null, mapDispatchToProps)(SignUp)
