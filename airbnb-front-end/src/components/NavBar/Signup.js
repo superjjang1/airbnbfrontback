@@ -50,12 +50,11 @@ class SignUp extends React.Component{
         )
     }
 }
-
-function mapDispatchToProps (dispatch){
+function mapDispatchToProps(dispatch){
     return bindActionCreators({
-        signUpAction: signUpAction
+        signUpAction
     },dispatch)
 }
 
-
-export default connect(null, mapDispatchToProps)(SignUp)
+// export default SignUp;
+export default connect(null,mapDispatchToProps)(SignUp);
