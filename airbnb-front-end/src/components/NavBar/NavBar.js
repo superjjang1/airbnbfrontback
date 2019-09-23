@@ -8,8 +8,23 @@ import SignUp from './Signup';
 
 class NavBar extends Component {
     state = {
-        showModal : false
+        showModal : false,
+        modalContent:<ModalSplash />
     }
+
+    changeModalContent =(newContent) =>{
+        let modalContent = <ModalSplash/>
+        if (newContent==='login'){
+                modalContent: <Login/>
+        }else if(newContent === 'signup'){
+
+                modalContent: <SignUp/>
+        }
+        this.setState({
+            modalContent
+        })
+    }
+
     signup = (e) =>{
         document.querySelector('body').className = 'body-modal-show';
         this.setState({
@@ -52,7 +67,7 @@ class NavBar extends Component {
                     <button id="close-modal" onClick={this.closeModal}>&Chi;</button>
                     <div className="modal-content">
 
-                    <ModalSplash/>
+                    {this.state.modalContent}
                     </div>
                 </div>
             </div>
