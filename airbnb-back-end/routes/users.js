@@ -6,6 +6,8 @@ router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
 router.post('/signup',(req,res,next)=>{
+  //someone wants to sign up!, so essited
+  
   res.json(req.body);
 })
 
