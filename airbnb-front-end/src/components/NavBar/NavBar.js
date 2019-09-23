@@ -45,26 +45,16 @@ class NavBar extends Component {
                         </ul>
                     </div>
                 </nav>
-                <div className="login-modal" style={this.state.showModal ? {"display":"block"} : {}}>
-                    <button className="close-modal" onClick={this.closeModal}>x</button>
-                    <h1>Modal</h1>
-                    <section>
-                    <button type="submit" className="facebook" >
-                        <span>
-                            <div>
-                                <div>
-                                    <svg viewBox="0 0 32 32" role="presentation" ></svg>
-
-                                </div>
-                            </div>
-                            <div class="">
-                                <div>Continue with Facebook</div>
-                            </div>
-                        </span>
-                    </button>
-
-                    </section>
-
+                <div className="login-modal" style={this.state.showModal ? {"display": "block"} : {}} >
+                    <button id="close-modal" onClick={this.closeModal}>&Chi;</button>
+                    <div className="modal-content">
+                            <button className="facebook-login">Connect With Facebook</button>
+                            <button className="google-login">Connect with Google</button>
+                        <span>or</span>
+                        <button className="center email-login">Sign up with email</button>
+                        <div className="border-rule"></div>
+                        <div className="login-text align-left">Already have an Airbnb account? <Link to="">Log in</Link></div>
+                    </div>
                 </div>
             </div>
 
