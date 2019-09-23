@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const db= require('../db');
+const bcrypt = require('bcryptjs');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -30,7 +31,14 @@ db.query(checkUserQuery,[email],(err,results)=>{
   }else{
     //this email has not been used
     const insertUserQuery = ` INSERT INTO users(first, last, email, password) VALUES (?,?,?,?)`
-    
+    //turn the pw into something evil for db storage
+    const salt = bcrypt.genSaltSync(10);
+    const hash = bcrypt.hashSync(password, salt);
+    db.query(insertUserQuery,[first,last,email,hash],(err2)=>{ if (err2){throw err2}
+  res.json({
+    msg: "usrAdded"
+  })
+});
   }
 
 })
