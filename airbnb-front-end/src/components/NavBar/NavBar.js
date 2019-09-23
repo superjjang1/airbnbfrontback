@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './NavBar.css';
 import {Link} from 'react-router-dom';
+import ModalSplash from './ModalSplash';
 
 
 class NavBar extends Component {
@@ -48,12 +49,8 @@ class NavBar extends Component {
                 <div className="login-modal" style={this.state.showModal ? {"display": "block"} : {}} >
                     <button id="close-modal" onClick={this.closeModal}>&Chi;</button>
                     <div className="modal-content">
-                            <button className="facebook-login">Connect With Facebook</button>
-                            <button className="google-login">Connect with Google</button>
-                        <span>or</span>
-                        <button className="center email-login">Sign up with email</button>
-                        <div className="border-rule"></div>
-                        <div className="login-text align-left">Already have an Airbnb account? <Link to="">Log in</Link></div>
+
+                    <ModalSplash/>
                     </div>
                 </div>
             </div>
