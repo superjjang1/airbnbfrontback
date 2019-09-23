@@ -11,7 +11,7 @@ function Login(props){
         <input className="password-signup" placeholder="Password" />
         <button className="sign-up-button">Log In</button>
         <div className="border-rule"></div>
-        <div className="login-text align-left">Don't have an account? <Link to="">Sign Up</Link></div>
+        <div className="login-text align-left">Don't have an account? <span onClick={()=>{props.changeModalContent('signup')}} >Sign Up</span></div>
         </div>
     )
 }

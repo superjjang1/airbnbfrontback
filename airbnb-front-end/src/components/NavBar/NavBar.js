@@ -19,7 +19,6 @@ class NavBar extends Component {
     }
 
     changeModalContent =(newContent) =>{
-        console.log(this);
         let modalContent = <ModalSplash changeModalContent={this.changeModalContent}/>
         if (newContent==='login'){
                 modalContent = <Login changeModalContent={this.changeModalContent}/>
@@ -32,7 +31,6 @@ class NavBar extends Component {
     }
 
     signup = (e) =>{
-        console.log(this);
         document.querySelector('body').classList = 'body-modal-show';
         this.setState({
             showModal: true

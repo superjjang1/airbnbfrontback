@@ -10,7 +10,7 @@ function SignUp(props){
         <input className="password-signup" placeholder="Password" />
         <button className="sign-up-button">Sign up</button>
         <div className="border-rule"></div>
-        <div className="login-text align-left">Already have an Airbnb account? <Link to="">Log in</Link></div>
+        <div className="login-text align-left">Already have an Airbnb account? <span onClick={()=>{props.changeModalContent('login')}}>Log in</span></div>
         </div> 
     )
 }
