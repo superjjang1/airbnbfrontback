@@ -29,6 +29,8 @@ class SignUp extends React.Component{
         // console.log(`Name:${this.state.first} ${this.state.last}`)
         // console.log(`Email:${this.state.email}`)
         // console.log(`Pass:${this.state.password}`)
+        const userData={...this.state}
+        this.props.signUpAction(userData)
     }
     render(){
 
