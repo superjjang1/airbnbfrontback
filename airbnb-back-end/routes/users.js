@@ -10,10 +10,10 @@ router.get('/', function(req, res, next) {
 router.post('/signup',(req,res,next)=>{
   //someone wants to sign up!, so essited
   //first check to see if data is vali
-  const { first,last,email,password } = req.body;
-  if((!first)||(!last)||(!email)||(!password)){
+  const { first,last,pass,email } = req.body;
+  if((!first) || (!last) || (!pass) || (!email)){
     //stop goodbye
-    res.json({msg:"invalidData"});
+    res.json({msg:"notworking"});
     return;
   }
   //if we get this far, check if they're already in the db.
@@ -30,10 +30,10 @@ db.query(checkUserQuery,[email],(err,results)=>{
     })
   }else{
     //this email has not been used
-    const insertUserQuery = ` INSERT INTO users(first, last, email, password) VALUES (?,?,?,?)`
+    const insertUserQuery = ` INSERT INTO users(first, last, email, pass) VALUES (?,?,?,?)`
     //turn the pw into something evil for db storage
     const salt = bcrypt.genSaltSync(10);
-    const hash = bcrypt.hashSync(password, salt);
+    const hash = bcrypt.hashSync(pass, salt);
     db.query(insertUserQuery,[first,last,email,hash],(err2)=>{ if (err2){throw err2}
   res.json({
     msg: "usrAdded"
@@ -42,7 +42,6 @@ db.query(checkUserQuery,[email],(err,results)=>{
   }
 
 })
-  res.json(req.body);
 })
 
 module.exports = router;

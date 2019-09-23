@@ -10,7 +10,7 @@ class SignUp extends React.Component{
         email: "",
         first: "",
         last: "",
-        password:""
+        pass:""
     }
     changeEmail = (e) => {
         this.setState({email: e.target.value})
@@ -22,7 +22,7 @@ class SignUp extends React.Component{
         this.setState({last: e.target.value})
     }
     changePass = (e) => {
-        this.setState({password: e.target.value})
+        this.setState({pass: e.target.value})
     }
     submitSignUp = (e) =>{
         e.preventDefault();
@@ -41,7 +41,7 @@ class SignUp extends React.Component{
             <input onChange={this.changeEmail} value={this.state.email} className="email-signup" placeholder="Email address" />
             <input onChange={this.changeFirst} value={this.state.first} className="first-signup" placeholder="First name" />
             <input onChange={this.changeLast} value={this.state.last} className="last-signup" placeholder="Last name" />
-            <input onChange={this.changePass} value={this.state.password} className="password-signup" placeholder="Password" type="password" />
+            <input onChange={this.changePass} value={this.state.pass} className="password-signup" placeholder="Password" type="password" />
             <button className="sign-up-button">Sign up</button>
             <div className="border-rule"></div>
             <div className="login-text align-left">Already have an Airbnb account? <span onClick={()=>{this.props.changeModalContent('login')}}>Log in</span></div>
