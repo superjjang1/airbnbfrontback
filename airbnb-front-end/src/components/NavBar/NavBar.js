@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import './NavBar.css';
 import {Link} from 'react-router-dom';
 import ModalSplash from './ModalSplash';
+import Login from './Login';
+import SignUp from './Signup';
 
 
 class NavBar extends Component {
