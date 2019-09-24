@@ -10,7 +10,8 @@ class SignUp extends React.Component{
         email: "",
         first: "",
         last: "",
-        pass: ""
+        pass: "",
+        msg: ""
     }
     changeEmail = (e) => {
         this.setState({email: e.target.value})
@@ -34,36 +35,45 @@ class SignUp extends React.Component{
         let formValid = true;
         let msg = "";
         for(let key in this.state){
-            if(this.state[key].length <1){
+            if((this.state[key].length <1)&&(key !== 'msg')){
                 formValid = false;
-                msg = `${key} field is required`;
+                msg = `${key} field is required`
+                break;
             }
         }
-        if(this.state.password.toLowerCase === this.state.password){
+        if(this.state.pass.toLowerCase() === this.state.pass){
             // user doesn't have any uppercase characters
             formValid = false;
             msg = "Youre password, must contain at least 1 uppercase letter";
             //check to see if there is a number in the password using regex
-        }else if(/\d/.test(this.state.password)){
-
+        }else if(!(/\d/.test(this.state.pass))){
+            formValid = false;
+            msg = "Your password, must contain atleast one number."
         }
-        const userData={...this.state}
-        this.props.signUpAction(userData)
+        if(formValid){
+            const userData={...this.state}
+            this.props.signUpAction(userData);
+        }else{
+            this.setState({
+                msg
+            })
+        }
     }
     render(){
         console.log(this.props.auth)
         return(
             <div className="register-form">
-            <form onSubmit={this.submitSignUp}>
+                <p className="form-msg">{this.state.msg}</p>
+                <form onSubmit={this.submitSignUp}>
 
-            <input onChange={this.changeEmail} value={this.state.email} className="email-signup" placeholder="Email address" />
-            <input onChange={this.changeFirst} value={this.state.first} className="first-signup" placeholder="First name" />
-            <input onChange={this.changeLast} value={this.state.last} className="last-signup" placeholder="Last name" />
-            <input onChange={this.changePass} value={this.state.pass} className="password-signup" placeholder="Password" type="password" />
-            <button className="sign-up-button">Sign up</button>
-            <div className="border-rule"></div>
-            <div className="login-text align-left">Already have an Airbnb account? <span onClick={()=>{this.props.changeModalContent('login')}}>Log in</span></div>
-            </form>
+                    <input onChange={this.changeEmail} value={this.state.email} className="email-signup" placeholder="Email address" />
+                    <input onChange={this.changeFirst} value={this.state.first} className="first-signup" placeholder="First name" />
+                    <input onChange={this.changeLast} value={this.state.last} className="last-signup" placeholder="Last name" />
+                    <input onChange={this.changePass} value={this.state.pass} className="password-signup" placeholder="Password" type="password" />
+                    <button className="sign-up-button">Sign up</button>
+                <div className="border-rule"></div>
+                    <div className="login-text align-left">Already have an Airbnb account? <span onClick={()=>{this.props.changeModalContent('login')}}>Log in</span></div>
+                </form>
             </div> 
         )
     }
