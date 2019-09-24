@@ -40,7 +40,7 @@ db.query(checkUserQuery,[email],(err,results)=>{
     //grants 50 random numbers as your token.
     db.query(insertUserQuery,[first,last,email,hash,token],(err2)=>{ if (err2){throw err2}
   res.json({
-    msg: "usrAdded",
+    msg: "userAdded",
     token,
     email,
     first

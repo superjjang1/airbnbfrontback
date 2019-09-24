@@ -13,6 +13,19 @@ class SignUp extends React.Component{
         pass: "",
         msg: ""
     }
+    //is invoked immediately after updating occurs, this method dis not called upon intially after render occurs
+    //runs anytime props or state changes for this component
+    componentDidUpdate(prevProps,prevState){
+        if ((this.props.auth.msg === 'userExists')&&(prevProps.auth.msg !== 'userExists')){
+            this.setState({
+                msg: "This user already exists, please log in or create a new account."
+            })
+        }else if((this.props.auth.msg ==='userAdded')&&(prevProps.auth.msg !== 'userAdded')){
+            //user was added, close the modal.
+            this.props.closeModal();
+        }
+    }
+
     changeEmail = (e) => {
         this.setState({email: e.target.value})
     }
