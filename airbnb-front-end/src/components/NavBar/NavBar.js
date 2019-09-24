@@ -51,30 +51,39 @@ class NavBar extends Component {
         })
     }
 
+    buildNavLinks = () =>{
+        let navLinks = "";
+        navLinks = 
+    <ul id="nav-mobile" className="right">
+        <li>
+            <Link to="/host/homes">Host a home</Link>
+        </li>
+        <li>
+            <Link to="/host/experiences">Host an experience</Link>
+        </li>
+        <li>
+            <Link to="/help">Help</Link>
+        </li>
+        <li className="nav-non-link" onClick={this.signup}>
+            Sign up
+        </li>
+        <li className="nav-non-link" onClick={this.login}>
+            Log in
+        </li>               
+    </ul>
+    return navLinks
+    }
+
     render() { 
+        const navLinks = this.buildNavLinks();
         return ( 
         <div className="container-fluid nav">
             <div className="row">
                 <nav className="transparent">
                     <div className="nav-wrapper">
                         <Link to="/" className="left">AirBnB</Link>
-                        <ul id="nav-mobile" className="right">
-                            <li>
-                                <Link to="/host/homes">Host a home</Link>
-                            </li>
-                            <li>
-                                <Link to="/host/experiences">Host an experience</Link>
-                            </li>
-                            <li>
-                                <Link to="/help">Help</Link>
-                            </li>
-                            <li className="nav-non-link" onClick={this.signup}>
-                                Sign up
-                            </li>
-                            <li className="nav-non-link" onClick={this.login}>
-                               Log in
-                            </li>
-                        </ul>
+                        {navLinks}
+                        
                     </div>
                 </nav>
                 <div className="login-modal" style={this.state.showModal ? {"display": "block"} : {}} >
