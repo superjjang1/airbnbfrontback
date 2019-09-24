@@ -10,7 +10,7 @@ class SignUp extends React.Component{
         email: "",
         first: "",
         last: "",
-        pass:""
+        pass: ""
     }
     changeEmail = (e) => {
         this.setState({email: e.target.value})
@@ -29,6 +29,24 @@ class SignUp extends React.Component{
         // console.log(`Name:${this.state.first} ${this.state.last}`)
         // console.log(`Email:${this.state.email}`)
         // console.log(`Pass:${this.state.password}`)
+        //assume the data is valid,
+        //if we run into invalid data, switch to false.
+        let formValid = true;
+        let msg = "";
+        for(let key in this.state){
+            if(this.state[key].length <1){
+                formValid = false;
+                msg = `${key} field is required`;
+            }
+        }
+        if(this.state.password.toLowerCase === this.state.password){
+            // user doesn't have any uppercase characters
+            formValid = false;
+            msg = "Youre password, must contain at least 1 uppercase letter";
+            //check to see if there is a number in the password using regex
+        }else if(/\d/.test(this.state.password)){
+
+        }
         const userData={...this.state}
         this.props.signUpAction(userData)
     }
