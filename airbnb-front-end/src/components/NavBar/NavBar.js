@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 import ModalSplash from './ModalSplash';
 import Login from './Login';
 import SignUp from './Signup';
+import {connect} from 'react-redux';
 
 
 class NavBar extends Component {
@@ -53,6 +54,8 @@ class NavBar extends Component {
 
     buildNavLinks = () =>{
         let navLinks = "";
+        if(!this.props.auth.token){
+            // user is not logged in. give them standard nav
         navLinks = 
     <ul id="nav-mobile" className="right">
         <li>
@@ -71,6 +74,28 @@ class NavBar extends Component {
             Log in
         </li>               
     </ul>
+
+        }else{
+            //user is logged, give them logged in nav
+            navLinks =
+            <ul id="nav-mobile" className="right">
+                <li className="nav-non-link">
+                    <Link to="/host/homes">Host a home</Link>
+                </li>
+                <li className="nav-non-link">
+                    <Link to="/saved">Saved</Link>
+                </li>
+                <li className="nav-non-link">
+                    <Link to="/trips">Trips</Link>
+                </li>
+                <li className="nav-non-link" onClick={this.props.logout}>
+                    Logout
+                </li>
+                <li className="nav-non-link">
+                    <Link to="/account">Welcome, {this.props.auth.first}</Link>
+                </li>
+            </ul>
+        }
     return navLinks
     }
 
@@ -81,9 +106,9 @@ class NavBar extends Component {
             <div className="row">
                 <nav className="transparent">
                     <div className="nav-wrapper">
-                        <Link to="/" className="left">AirBnB</Link>
+                        <Link to="/" className="left"><h4>AirBnb</h4></Link>
                         {navLinks}
-                        
+
                     </div>
                 </nav>
                 <div className="login-modal" style={this.state.showModal ? {"display": "block"} : {}} >
@@ -99,5 +124,11 @@ class NavBar extends Component {
          );
     }
 }
+function mapStateToProps(state){
+    return {
+        auth: state.auth
+    }
+}
  
-export default NavBar;
+// export default NavBar;
+export default connect(mapStateToProps)(NavBar);
