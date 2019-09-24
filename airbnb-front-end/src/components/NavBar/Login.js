@@ -7,7 +7,8 @@ import {bindActionCreators} from 'redux';
 class Login extends React.Component{
     state ={
         email: "",
-        password:""
+        password:"",
+        msg:""
     }
     componentDidUpdate(prevProps, prevState){
         console.log(this.props.auth)
@@ -18,6 +19,11 @@ class Login extends React.Component{
         }else if((this.props.auth.msg ==='loggedIn')&&(prevProps.auth.msg !== 'loggedIn')){
             //user was added, close the modal.
             this.props.closeModal();
+        }else if((this.props.auth.msg ==='noEmail')&&(prevProps.auth.msg !== 'noEmail')){
+            //user was added, close the modal.
+            this.setState({
+                msg:"this email isn't registered"
+            })
         }
         
     }
@@ -67,6 +73,7 @@ class Login extends React.Component{
         return(
             <div className="login-form">
                 <form onSubmit={this.submitLogin}>
+                    <p className="red-text">{this.state.msg}</p>
                     <button className="facebook-login">Connect With Facebook</button>
                     <button className="google-login">Connect with Google</button>
                     <span>or</span>
