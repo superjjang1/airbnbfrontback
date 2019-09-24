@@ -50,5 +50,25 @@ db.query(checkUserQuery,[email],(err,results)=>{
 
 })
 })
+router.post('/login',(req,res)=>{
+  const {email, pass} = req.body;
+  if ((!email)||(!pass)){
+    res.json({msg:'wrong'});
+    return;
+  }
+  const checkLogQuery = `Select * FROM users WHERE email = ? and pass =?`
+  db.query(checkLogQuery,[email , pass],(err,results)=>{
+    if(err){
+      throw err
+    };
+    if(results.length>0){
+      res.json({
+        msg: "welcome"
+      })
+    }
+
+})  
+
+})
 
 module.exports = router;
