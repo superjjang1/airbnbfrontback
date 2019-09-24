@@ -51,24 +51,47 @@ db.query(checkUserQuery,[email],(err,results)=>{
 })
 })
 router.post('/login',(req,res)=>{
-  const {email, pass} = req.body;
-  if ((!email)||(!pass)){
-    res.json({msg:'wrong'});
-    return;
-  }
-  const checkLogQuery = `Select * FROM users WHERE email = ? and pass =?`
-  db.query(checkLogQuery,[email , pass],(err,results)=>{
+  console.log(req.body)
+  const email= req.body.email;
+  const pass= req.body.password;
+  //first check for this email.
+  const checkLogQuery = `Select * FROM users WHERE email = ?`
+  db.query(checkLogQuery,[email],(err,results)=>{
     if(err){
       throw err
+      //check to see if thre's a result
     };
     if(results.length>0){
+      //at this stage, you've found the user.
+      const thisRow = results[0]
+      //find out if the pass is corrct
+      const isValidPass = bcrypt.compareSync(pass,thisRow.pass)
+      if(isValidPass){
+        //these are the things we're looking for
+        const token = randToken.uid(50)
+        const updateUserTokenQuery = `UPDATE users SET token = ? WHERE email = ?`
+        db.query(updateUserTokenQuery,[token, email], (err)=>{
+          if(err){throw err}
+        })
+        res.json({
+          msg: "loggedIn",
+          first: thisRow.first,
+          email: thisRow.email,
+          token
+        })
+      }else{
+        //no pass
+        res.json({
+          msg:"badpass"
+        })
+      }
+    }else {
+      //no match
       res.json({
-        msg: "welcome"
+        msg:"noEmail"
       })
     }
-
 })  
-
 })
 
 module.exports = router;

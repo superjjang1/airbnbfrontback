@@ -9,7 +9,18 @@ class Login extends React.Component{
         email: "",
         password:""
     }
-    
+    componentDidUpdate(prevProps, prevState){
+        console.log(this.props.auth)
+        if ((this.props.auth.msg === 'badpass')&&(prevProps.auth.msg !== 'badpass')){
+            this.setState({
+                msg: "badpasswordbuddy"
+            })
+        }else if((this.props.auth.msg ==='loggedIn')&&(prevProps.auth.msg !== 'loggedIn')){
+            //user was added, close the modal.
+            this.props.closeModal();
+        }
+        
+    }
     changeEmail = (e) => {
         this.setState({email: e.target.value})
     }
@@ -18,35 +29,38 @@ class Login extends React.Component{
     }
     submitLogin=(e)=>{
         e.preventDefault();
+        const formData = {...this.state}
+        this.props.login(formData);
+
         // validation for email and pass if you wanna put it in, this is where it would go.
-        let formValid=true;
-        let msg = "";
-        for(let key in this.state){
-            if((this.state[key].length <1)&&(key !=='msg')){
-                formValid = false;
-                msg = `${key} field is required`
-                break;
-            }
-        }
-        if(this.props.pass.toLowerCase()===this.props.pass){
-            formValid =false;
-            msg = "your password, isn't correct"  
-        }else if(!(/\d/.test(this.state.pass))){
-            formValid = false;
-            msg= "wrong password"
-        }
-        if(this.state.email.toLowerCase()===this.state.email){
-            formValid =false;
-            msg = "your email is incorrect"
-        }
-        if(formValid){
-            const loginData = {...this.state}
-            this.props.loginAction(loginData);
-        }else{
-            this.setState({
-                msg
-            })
-        }
+        // let formValid=true;
+        // let msg = "";
+        // for(let key in this.state){
+        //     if((this.state[key].length <1)&&(key !=='msg')){
+        //         formValid = false;
+        //         msg = `${key} field is required`
+        //         break;
+        //     }
+        // }
+        // if(this.props.pass.toLowerCase()===this.props.pass){
+        //     formValid =false;
+        //     msg = "your password, isn't correct"  
+        // }else if(!(/\d/.test(this.state.pass))){
+        //     formValid = false;
+        //     msg= "wrong password"
+        // }
+        // if(this.state.email.toLowerCase()===this.state.email){
+        //     formValid =false;
+        //     msg = "your email is incorrect"
+        // }
+        // if(formValid){
+        //     const loginData = {...this.state}
+        //     this.props.loginAction(loginData);
+        // }else{
+        //     this.setState({
+        //         msg
+        //     })
+        // }
     }
 
     render(){
