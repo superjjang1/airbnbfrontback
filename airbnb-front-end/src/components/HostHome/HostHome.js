@@ -39,13 +39,30 @@ class HostHome extends Component{
     }
     submitHome = async (e) =>{
         e.preventDefault();
-        const submitHostUrl = `${window.apiHost}/host/homes`
-        const dataToSend = {...this.state}
-        dataToSend.token = this.props.auth.token
-        //this gets the auth in this state ^
-        const axiosResponse = await axios.post(submitHostUrl,dataToSend)
+        console.log(this.props.auth);
+        const file = document.getElementById('location-image').files[0];
+        const headerConfig= {
+            headers: {
+                'content-type': 'multipart/form-data'
+            }
+        }
+        //formData() exists native to JavaScript, part of the web API
+        // provides a way to easily construct a set of key/value pairs
+        //AJAX uses this, Axios uses this, FETCH. XMLHttpRequest.send()
+
+        const data = new FormData();
+        data.append('locationImage',file);
+        for(let key in this.state){
+            data.append(key, this.state[key])
+        }
         
-        console.log('submit');
+        console.dir(file)
+        const submitHostUrl = `${window.apiHost}/host/homes`
+        // const dataToSend = {...this.state}
+        data.append('token',this.props.auth.token);
+        //this gets the auth in this state ^
+        const axiosResponse = await axios.post(submitHostUrl,data)
+        console.log(axiosResponse.data)
         
     }
     componentDidMount(){
