@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import './HostHome.css';
 import { bindActionCreators } from 'redux';
 import homeAction from '../../actions/homeAction';
+import axios from 'axios';
 
 class HostHome extends Component{
     state = {
@@ -36,10 +37,14 @@ class HostHome extends Component{
     changeAmenities = (e) =>{
         this.setState({amenities: e.target.value})
     }
-    submitHome = (e) =>{
+    submitHome = async (e) =>{
         e.preventDefault();
-        const formData = {...this.state}
-        this.props.home(formData)
+        const submitHostUrl = `${window.apiHost}/host/homes`
+        const dataToSend = {...this.state}
+        dataToSend.token = this.props.auth.token
+        //this gets the auth in this state ^
+        const axiosResponse = await axios.post(submitHostUrl,dataToSend)
+        
         console.log('submit');
         
     }
@@ -95,7 +100,7 @@ class HostHome extends Component{
               </div>
               <div className="row">
                     <div className="input-field col s6">                            
-                        <input onChange={this.changeImage} type="file" />Upload image
+                        <input id="location-image" onChange={this.changeImage} type="file" />Upload image
                     </div>
                     <div className="input-field col s6">
                         <input value={this.state.amenities} onChange={this.changeAmenities} id="amenities" type="text" className="validate" />
