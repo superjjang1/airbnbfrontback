@@ -7,6 +7,7 @@ import SignUp from './Signup';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import logoutAction from '../../actions/logoutAction';
+import testThunkAction from '../../actions/thunkTest';
 
 
 class NavBar extends Component {
@@ -16,6 +17,7 @@ class NavBar extends Component {
         
     }
     componentDidMount(){
+        this.props.aThunk();
         this.setState({
             modalContent:<ModalSplash changeModalContent={this.changeModalContent}/>
         })
@@ -129,7 +131,8 @@ class NavBar extends Component {
 
 function mapDispatchToProps(dispatch){
     return bindActionCreators({
-        logout: logoutAction
+        logout: logoutAction,
+        aThunk: testThunkAction
     },dispatch)
 }
 
