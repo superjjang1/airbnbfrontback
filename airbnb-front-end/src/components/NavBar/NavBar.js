@@ -17,7 +17,7 @@ class NavBar extends Component {
         
     }
     componentDidMount(){
-        this.props.aThunk();
+        // this.props.aThunk();
         this.setState({
             modalContent:<ModalSplash changeModalContent={this.changeModalContent}/>
         })
@@ -104,11 +104,16 @@ class NavBar extends Component {
     }
 
     render() { 
+        let navColor = "transparent";
+        if(this.props.location.pathname ==='/host/homes'){
+            navColor = "black";
+        }
+        console.log(this.props);
         const navLinks = this.buildNavLinks();
         return ( 
         <div className="container-fluid nav">
             <div className="row">
-                <nav className="transparent">
+                <nav className={navColor}>
                     <div className="nav-wrapper">
                         <Link to="/" className="left"><h4>AirBnb</h4></Link>
                         {navLinks}
