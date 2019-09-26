@@ -10,8 +10,10 @@ const fs = require('fs');
 //this triggers when post('/host/homes') only applies in /host.
 
 router.post('/homes', (req, res) => {
-    if(!res.locals.loggedIn){
-        res.json({msg:"badToken"})
+    if (!res.locals.loggedIn) {
+        res.json({
+            msg: "badToken"
+        })
         return;
     }
     // console.log(req.body);
@@ -23,7 +25,7 @@ router.post('/homes', (req, res) => {
         price,
         details,
         amenities,
-        token
+        imageUrl
     } = req.body
     //rename filepath
     const f = req.file;
@@ -33,10 +35,16 @@ router.post('/homes', (req, res) => {
         if (err) throw err;
     })
 
-    const insertHomeQuery = `INSERT INTO homes (uid,title, location, guests, price, details, amenities) VALUES (?,?,?,?,?,?,?)`;
-    const dbValues = [uid, title, location, guests, price, details, amenities]
+    const insertHomeQuery = `INSERT INTO homes (uid,title, location, guests, price, details, amenities, imageUrl) VALUES (?,?,?,?,?,?,?,?)`;
+    const dbValues = [res.locals.uid, title, location, guests, price, details, amenities,filePathForDb]
+    db.query(insertHomeQuery, dbValues, (err) => {
+        if(err) throw err;
+        res.json({
+            msg: "homeAdded"
+        })
+    })
     console.log(finalFilePath);
-    res.json(req.body);
+    
 });
 
 module.exports = router;
