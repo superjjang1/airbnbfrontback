@@ -27,8 +27,10 @@ class Home extends Component {
                 </div>
             </div>
             <div className="container">
-                <div className="venue col s12">
-                    <Venues cities={this.state.cities}/>
+                <div className="row">
+                    <div className="venue col s12">
+                        <Venues cities={this.state.cities}/>
+                    </div>
                 </div>
             </div>
          </>);
