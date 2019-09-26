@@ -16,7 +16,7 @@ class Slick extends Component {
             infinite: true,
             speed: 500,
             arrows: true,
-            slidesToShow: 6,
+            slidesToShow: 4,
             nextArrow: <SampleNextArrow />,
             prevArrow: <SamplePrevArrow />,
             responsive: [

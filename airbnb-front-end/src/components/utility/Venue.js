@@ -9,7 +9,7 @@ function Venues(props){
     const baseCards = props.cities.map((city,i)=>{
         return (
             <div key={i} className = "col s3">
-                <Link tp={`/city/${city.cityName}`}>
+                <Link to={`/city/${city.cityName}`}>
                 <BaseCard city ={city}/>
                 </Link>
             </div>
