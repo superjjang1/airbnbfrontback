@@ -105,7 +105,7 @@ class HostHome extends Component{
                             <label># of guests</label>
                         </div>                    
                         <div className="input-field col s6">
-                        <input value={this.state.price} onChange={this.changePrice} type="number" id="price" className="validate" />
+                        <input value={this.state.price} onChange={this.changePrice} type="number" id="price" min="0" className="validate" />
                         <label htmlFor="price">Price/night</label>
                     </div>
                 </div>

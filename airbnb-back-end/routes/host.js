@@ -8,13 +8,16 @@ const fs = require('fs');
 //this triggers when post('/host/homes') only applies in /host.
 
 router.post('/homes',upload.single('locationImage'),(req,res)=>{
-    console.log(req.body);
-    console.log(req.file);
+    const { title,location, guests, pricePerNight, details, amenities, token } = req.body
     //rename filepath
     const f = req.file;
-    fs.rename(f.path, f.destination+'/'+f.originalname,(err)=>{
+    const finalFilePath = f.destination+'/'+Date.now()+f.originalname;
+    const filePathForDb = filanFilePath.slice(8)
+    fs.rename(f.path,finalFilePath,(err)=>{
         if(err)throw err;
     })
+    const insertHomeQuery = `INSERT INTO homes`
+    console.log(finalFilePath);
     res.json(req.body);
 });
 
