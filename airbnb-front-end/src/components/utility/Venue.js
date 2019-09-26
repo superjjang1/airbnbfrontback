@@ -1,8 +1,10 @@
 import React from 'react';
+import BaseCard from './BaseCard';
 
 function Venues(props){
+    const city = {image:"hi", cityName:"London", price:"1000$/mo"}
     return(
-        <h1>Hello, Venue</h1>
+        <BaseCard city={city} />
     )
 }
 export default Venues;

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './BaseCard.css'
+
 class BaseCard extends Component {
     render() {
         const {image,cityName,price} = this.props.city

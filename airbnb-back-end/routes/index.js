@@ -27,5 +27,14 @@ router.post('*', upload.single('locationImage'), (req, res, next) => {
     //after finding out they're a user.
   })
 })
+router.get('/cities',(req,res,next)=>{
+  const citiesQuery = `SELECT * FROM cities
+  ORDER BY RAND()
+  LIMIT 8`;
+  db.query(citiesQuery,(err,results)=>{
+    if(err)throw err;
+    res.json(results);
+  })
+})
 
 module.exports = router;
