@@ -5,6 +5,9 @@ import NavBar from './components/NavBar/NavBar';
 import Home from './components/Home/Home';
 import HostHome from './components/HostHome/HostHome';
 import LoginPage from './components/LoginPage';
+import Locations from './components/Locations/Location';
+import Abodes from './components/utility/Abodes';
+
 function App() {
   return (
     <Router>
@@ -13,6 +16,8 @@ function App() {
           <Route exact path = "/" component ={Home} />
           <Route exact path = "/host/homes" component = {HostHome}/>
           <Route exact path ="/login" component = {LoginPage}/>
+          <Route exact path="/location" component = {Locations}/>
+          <Route exact path="/Abode" component = {Abodes}/>
     </div>
 
     </Router>
