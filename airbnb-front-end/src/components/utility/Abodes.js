@@ -24,7 +24,7 @@ class Abodes extends Component {
         <div className="col s12 waypoint">
             <Link to="/">
                 <div className="large-pic">
-                    <img src={"http://lorempixel.com/600/400/city/"+rand} />
+                    <img src={"http://lorempixel.com/600/400/city/"+rand} alt="randocity"/>
                 </div>
                 <div className="info">
                     <div className="listing-details">PRIVATE ROOM · CANICATTÌ</div>
