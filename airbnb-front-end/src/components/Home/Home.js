@@ -7,7 +7,7 @@ import Abodes from '../utility/Abodes';
 
 class Home extends Component {
     state = {cities: [], abodes: []}
-    componentDidMount(){
+    async componentDidMount(){
         const recommendedCities = axios.get(`${window.apiHost}/cities`)
         recommendedCities.then((resp)=>{
             const cities = resp.data;
@@ -15,15 +15,16 @@ class Home extends Component {
                 cities
             })
         })
-        let abodes =[];
-        for(let i = 0; i<8; i++){
-            abodes.push(
-            <div key = {i} className="col s3">
-                <Abodes/>
+        const axiosResponse = await axios.get(`${window.apiHost}/abodes`)
+        const suggestedAbodes = axiosResponse.data.map((abode,i)=>{
+            return(
+                <div key = {i} className="col s3">
+                <Abodes abode = {abode}/>
             </div>)
-        }
+        })
+        
         this.setState({
-            abodes
+            abodes: suggestedAbodes
         })
     }
     render() { 

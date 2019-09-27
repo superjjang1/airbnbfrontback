@@ -6,7 +6,8 @@ import Home from './components/Home/Home';
 import HostHome from './components/HostHome/HostHome';
 import LoginPage from './components/LoginPage';
 import Locations from './components/Locations/Location';
-import Abodes from './components/utility/Abodes';
+// import Abodes from './components/utility/Abodes';
+import FullAbode from './components/FullAbode/FullAbode';
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
           <Route exact path = "/host/homes" component = {HostHome}/>
           <Route exact path ="/login" component = {LoginPage}/>
           <Route exact path="/location" component = {Locations}/>
-          <Route exact path="/Abode" component = {Abodes}/>
+          <Route exact path="/Abode/:abodeId" component = {FullAbode}/>
     </div>
 
     </Router>
