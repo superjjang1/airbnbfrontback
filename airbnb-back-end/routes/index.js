@@ -13,9 +13,10 @@ var stripe = require('stripe')(config.stripeKey)
 //this is a piece of middleware, that always gets the user with the token.
 //checks the user out to lock down our app.
 router.post('*', upload.single('locationImage'), (req, res, next) => {
+  console.log('hello?')
   const token = req.body.token
   const getUserIdQuery = `SELECT id FROM users where token = ?`;
-  db.query(getUserIdQuery, [token], (err, results) => {
+  db.query(getUserIdQuery, [token], (err, results) => {if(err){throw err};
     if (results.length === 0) {
       res.locals.loggedin = false;
       //checks to see if you're logged in,
@@ -56,8 +57,9 @@ router.get('/abode/:abodeId',(req,res,)=>{
     res.json(result[0])
   })
 })
-router.post('/payement/stripe', (req, res, next) => {
+router.post('/payment/stripe', (req, res, next) => {
   //we dont need token. It's already been validated above.
+  console.log('paymentstripe')
   if(!res.locals.loggedIn){
     res.json({msg: "badToken"})
     return;
@@ -78,7 +80,7 @@ router.post('/payement/stripe', (req, res, next) => {
           (uid, hid, paid)
           VALUES
           (?,?,?)`
-        db.insert(insertReservationQuery,[res.locals.uid,abodeId,1]);
+        db.query(insertReservationQuery,[res.locals.uid,abodeId,1]);
           res.json({
               msg: 'paymentSuccess'
           });
