@@ -8,6 +8,7 @@
     "@fortawesome/react-fontawesome": "^0.1.4",
     "axios": "^0.19.0",
     "i": "^0.3.6",
+    "moment": "^2.24.0",
     "npm": "^6.11.3",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
